@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sty.css">
+    <title>Escapa de Sonic</title>
+</head>
+<body>
+    <main>
+        <h1>Escapa de Sonic</h1>
+        <p class="subtitulo">Usa las flechas o WASD para mover a Tails. ¡No dejes que Sonic te atrape!</p>
+
+        <!-- Distribución principal: juego y panel lateral de ajustes. -->
+        <div class="distribucion-juego">
+            <section class="panel-juego" aria-label="Juego Escapa de Sonic">
+                <!-- Marcador, botón de inicio y mensajes de estado. -->
+                <div class="controles-juego">
+                    <strong>Tiempo: <span id="temporizador">30</span> s</strong>
+                    <button id="boton-iniciar" type="button">Iniciar juego</button>
+                    <span id="mensaje-juego" aria-live="polite">¡Sobrevive 30 segundos!</span>
+                </div>
+
+                <!-- El área donde se colocan y mueven ambos personajes. -->
+                <div id="area-juego" class="area-juego" aria-label="Área de juego">
+                    <div id="jugador" class="personaje" role="img" aria-label="Tails">
+                        <img src="tails.gif" alt="">
+                    </div>
+                    <div id="sonic" class="personaje" role="img" aria-label="Sonic">
+                        <img src="SonicEXE.gif" alt="">
+                    </div>
+                    <div id="capa-mensaje" class="capa-mensaje">
+                        <p id="mensaje-capa">Presiona «Iniciar juego» para comenzar.</p>
+                    </div>
+                </div>
+                <p class="instrucciones">Muévete con las flechas del teclado o las teclas W, A, S y D.</p>
+            </section>
+
+            <!-- Ajustes de velocidad, escenario y música. -->
+            <aside class="panel-configuracion" aria-labelledby="titulo-configuracion">
+                <h2 id="titulo-configuracion">Configuración</h2>
+                <label>
+                    <span>Velocidad de Tails</span>
+                    <span class="valor-ajuste"><span id="valor-velocidad-jugador">220</span> px/s</span>
+                    <input id="velocidad-jugador" type="range" min="100" max="420" step="20" value="220">
+                </label>
+                <label>
+                    <span>Velocidad de Sonic</span>
+                    <span class="valor-ajuste"><span id="valor-velocidad-sonic">95</span> px/s</span>
+                    <input id="velocidad-sonic" type="range" min="40" max="180" step="10" value="95">
+                </label>
+                <label for="selector-escenario">
+                    <span>Escenario</span>
+                    <select id="selector-escenario"></select>
+                </label>
+                <label class="control-musica">
+                    <input id="alternar-musica" type="checkbox">
+                    Música
+                </label>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Audio local, reproducido cuando se activa el control de música. -->
+    <audio id="musica-fondo" src="musica.mp3" loop></audio>
+    <script src="script.js"></script>
+</body>
+</html>

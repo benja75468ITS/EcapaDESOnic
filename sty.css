@@ -1,0 +1,251 @@
+/* Incluye bordes y rellenos en el tamaño total de los elementos. */
+* {
+    box-sizing: border-box;
+}
+
+/* Apariencia general con colores retro y tipografía pixel art. */
+body {
+    margin: 0;
+    padding: 28px 20px;
+    background: #17152b;
+    color: #f5f0ff;
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 1.35rem;
+}
+
+/* Centra el contenido y limita su ancho en pantallas grandes. */
+main {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+}
+
+/* Títulos con fuente pixelada y contraste amarillo sobre violeta. */
+h1,
+h2 {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    line-height: 1.6;
+}
+
+h1 {
+    margin: 0 0 8px;
+    color: #ffd84a;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    text-align: center;
+    text-shadow: 3px 3px 0 #742f9b;
+}
+
+/* Texto introductorio del juego. */
+.subtitulo {
+    margin: 0 0 22px;
+    color: #d3c8ef;
+    text-align: center;
+}
+
+/* Coloca el tablero junto a la barra lateral de configuración. */
+.distribucion-juego {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 245px;
+    align-items: stretch;
+    gap: 16px;
+}
+
+/* Marco compartido para el tablero y el panel de controles. */
+.panel-juego,
+.panel-configuracion {
+    min-width: 0;
+    padding: 14px;
+    border: 3px solid #6f54a5;
+    background: #25213d;
+    box-shadow: 4px 4px 0 #0c0b18;
+}
+
+/* Alinea el tiempo, el botón de inicio y el mensaje de estado. */
+.controles-juego {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-bottom: 12px;
+}
+
+.controles-juego strong {
+    color: #ffd84a;
+}
+
+#mensaje-juego {
+    margin-left: auto;
+    color: #d3c8ef;
+}
+
+/* Botón y selector con bordes marcados de estilo videojuego retro. */
+button,
+select {
+    padding: 8px 10px;
+    border: 2px solid #ffd84a;
+    border-radius: 0;
+    background: #523a87;
+    color: #fff7cf;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background: #704caf;
+}
+
+/* Indicador visible para la navegación con teclado. */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #66e4e6;
+    outline-offset: 3px;
+}
+
+/* Escenario donde se dibuja el fondo y se mueven los personajes. */
+.area-juego {
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+    border: 3px solid #211631;
+    background-color: #514376;
+    background-position: center;
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+/* Tamaño y aspecto pixelado compartidos por Tails y Sonic. */
+.personaje {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+}
+
+.personaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* Capa inicial y mensajes que aparecen al ganar o perder. */
+.capa-mensaje {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgb(20 13 40 / 48%);
+    color: white;
+    text-align: center;
+}
+
+.capa-mensaje p {
+    padding: 12px 16px;
+    border: 2px solid #ffd84a;
+    background: #25213d;
+}
+
+/* Oculta la capa mientras la partida está activa. */
+.capa-mensaje.oculta {
+    display: none;
+}
+
+/* Instrucciones debajo del tablero. */
+.instrucciones {
+    margin: 12px 0 0;
+    color: #d3c8ef;
+    text-align: center;
+}
+
+/* Distribución vertical de los ajustes en la barra lateral. */
+.panel-configuracion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-configuracion h2 {
+    margin: 0;
+    color: #66e4e6;
+    font-size: 0.9rem;
+}
+
+.panel-configuracion label {
+    display: grid;
+    gap: 7px;
+    color: #f5f0ff;
+}
+
+/* Resalta el valor numérico de las velocidades. */
+.valor-ajuste {
+    color: #ffd84a;
+}
+
+/* Estilos de los controles de velocidad y selector de escenario. */
+.panel-configuracion input[type='range'] {
+    width: 100%;
+    accent-color: #66e4e6;
+}
+
+.panel-configuracion select {
+    width: 100%;
+    border-color: #8d71c1;
+    background: #17152b;
+}
+
+/* Alinea la casilla y el texto para activar la música. */
+.control-musica {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding-top: 4px;
+    border-top: 1px solid #514376;
+}
+
+.control-musica input {
+    width: 18px;
+    height: 18px;
+    accent-color: #66e4e6;
+}
+
+/* En tablet y móvil, coloca los ajustes debajo del tablero. */
+@media (max-width: 720px) {
+    .distribucion-juego {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-configuracion {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        gap: 14px;
+    }
+
+    .panel-configuracion h2 {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Reduce espacios en pantallas de teléfono estrechas. */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .area-juego {
+        height: 340px;
+    }
+
+    .controles-juego #mensaje-juego {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .panel-configuracion {
+        grid-template-columns: 1fr;
+    }
+}
